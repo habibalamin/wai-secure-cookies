@@ -10,7 +10,7 @@ I am not a cryptographer, and the crypto libraries in Haskell are not nearly as 
 
 ---
 
-# Usage
+## Usage
 
 Populate the following environment variables in your WAI application process:
 
