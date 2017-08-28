@@ -15,8 +15,8 @@ I am not a cryptographer, and the crypto libraries in Haskell are not nearly as 
 Populate the following environment variables in your WAI application process:
 
 ```
-WAI\_COOKIE\_VALIDATION\_KEY # key to sign cookie names and values
-WAI\_COOKIE\_ENCRYPTION\_KEY # key to encrypt cookie names and values
+WAI_COOKIE_VALIDATION_KEY # key to sign cookie names and values
+WAI_COOKIE_ENCRYPTION_KEY # key to encrypt cookie names and values
 ```
 
 You can generate random keys with `waicookie-genkey`:
