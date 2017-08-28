@@ -4,7 +4,7 @@ I extracted a WAI middleware to automatically encrypt and sign cookies.
 
 ---
 
-** WARNING **
+**WARNING**
 
 I am not a cryptographer, and the crypto libraries in Haskell are not nearly as easy to use as what I'm used to in Ruby, so I wouldn't depend on this for a serious project until it's had some proper eyes on it.
 
