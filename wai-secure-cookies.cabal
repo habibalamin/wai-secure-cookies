@@ -1,5 +1,5 @@
 name:                wai-secure-cookies
-version:             0.1.0.1
+version:             0.1.0.2
 description:         WAI middleware to automatically encrypt and sign cookies
 homepage:            https://github.com/habibalamin/wai-secure-cookies
 license:             MIT
