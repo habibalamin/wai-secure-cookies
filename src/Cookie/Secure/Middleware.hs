@@ -15,7 +15,7 @@ import Network.HTTP.Types.Header (Header
 import Network.HTTP.Types.Status (status200)
 import qualified Data.ByteString.Char8 as BS
 import Data.Maybe (catMaybes)
-import Cookie.Secure (encryptNullIVAndSignIO, verifyAndDecryptIO)
+import Cookie.Secure (encryptAndSignIO, verifyAndDecryptIO)
 import Data.List.Split (splitOn)
 
 secureCookies :: Middleware
@@ -49,13 +49,14 @@ encryptAndSignCookieHeader (name, value) = (,)
       (cookie, metadata) = BS.break (== ';') value
       encryptedSignedCookieHeaderValue =
         flip BS.append metadata <$> encryptAndSignCookie cookie
-      encryptAndSignCookie c =
-        BS.intercalate "="
-        -- OPTIMIZE: Use IV for value, but not name, so that the cookie
-        -- can actually be deleted while keeping the value as secure as
-        -- possible.
-        <$> mapM encryptNullIVAndSignIO
-        (map BS.pack (splitOn "=" (BS.unpack c)))
+      encryptAndSignCookie c = do
+        let cookieNameValueList = map BS.pack . splitOn "=" $ BS.unpack c
+        let cName = head cookieNameValueList
+        let cValue = last cookieNameValueList
+
+        encryptedValue <- encryptAndSignIO cValue
+
+        return $ BS.intercalate "=" [cName, encryptedValue]
 
 replaceRequestHeaders :: Request -> RequestHeaders -> Request
 replaceRequestHeaders request newHeaders =

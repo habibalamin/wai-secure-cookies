@@ -1,7 +1,6 @@
 module Cookie.Secure (encryptAndSign
                     , verifyAndDecrypt
                     , encryptAndSignIO
-                    , encryptNullIVAndSignIO
                     , verifyAndDecryptIO) where
 
 import Data.ByteString (ByteString)
@@ -49,19 +48,6 @@ encryptAndSignIO message = do
 
   throwCryptoErrorIO
     $ encryptAndSign iv encryptionKey validationKey message
-
--- OPTIMIZE: DRY this up.
-encryptNullIVAndSignIO :: ByteString -> IO ByteString
-encryptNullIVAndSignIO message = do
-  -- This is currently ignored and a null IV used in its place, because we
-  -- need a deterministic output for cookies to be removed or changed, and
-  -- a random IV breaks that.
-  (_, validationKey, encryptionKey) <- getIVAuthKeyEncryptKey
-
-  throwCryptoErrorIO
-    $ encryptAndSign nullStringIV encryptionKey validationKey message
-    where
-      nullStringIV = replicate 16 '\0'
 
 verifyAndDecryptIO :: ByteString -> IO (Maybe ByteString)
 verifyAndDecryptIO message = do
