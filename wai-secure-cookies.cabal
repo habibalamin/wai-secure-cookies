@@ -6,7 +6,7 @@ license:             MIT
 license-file:        LICENSE
 author:              Habib Alamin
 maintainer:          ha.alamin@gmail.com
-copyright:           © حبيب الامين‪ 2017
+copyright:           © حبيب الامين ‪2017
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
