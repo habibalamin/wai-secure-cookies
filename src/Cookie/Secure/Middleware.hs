@@ -87,12 +87,19 @@ verifyAndDecryptCookieHeader (name, value) = (,)
   <*> verifyAndDecryptCookieHeaderValue value
     where
       verifyAndDecryptCookieHeaderValue value =
-        BS.intercalate "; "
+        BS.intercalate "; " . catMaybes
         <$> mapM verifyAndDecryptCookie
         (splitOn "; " (BS.unpack value))
-      verifyAndDecryptCookie cookie =
+      verifyAndDecryptCookie cookie = do
+        let cookieNameValueList = map BS.pack $ splitOn "=" cookie
+        let cName = head cookieNameValueList
+        let cValue = last cookieNameValueList
+
+        encryptedValue <- verifyAndDecryptIO cValue
+
         -- OPTIMIZE: maybe silently dropping cookies which fail to verify
         -- or decrypt isn't the best idea?
-        BS.intercalate "=" . catMaybes
-        <$> mapM verifyAndDecryptIO
-        (map BS.pack (splitOn "=" cookie))
+        case encryptedValue of
+          Nothing -> pure Nothing
+          Just encryptedValue' ->
+            return . Just $ BS.intercalate "=" [cName, encryptedValue']
