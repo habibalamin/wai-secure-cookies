@@ -37,7 +37,7 @@ verifyAndDecrypt :: String -> String -> ByteString -> Maybe ByteString
 verifyAndDecrypt authKey encryptKey message =
   deserialize message >>= verifyAndDecryptDeserialized
     where
-      verifyAndDecryptDeserialized signed = 
+      verifyAndDecryptDeserialized signed =
         if verify authKey signed
         then maybeCryptoError $ decrypt encryptKey (getSignable signed)
         else Nothing
