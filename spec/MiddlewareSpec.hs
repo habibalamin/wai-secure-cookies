@@ -61,7 +61,7 @@ getRequestCookie =
           ""
 
 exampleSignedEncryptedCookieValue :: String
-exampleSignedEncryptedCookieValue = "SessionId=aXYsUWxmbDhWLW90alJDTGtHSUh2Uno5Z3xPSkhTYjZsOTFsVnA|signature,be2ee0eb3d894ef671a8475d78c635d28e844011eda7ae16c47830333466d1e0"
+exampleSignedEncryptedCookieValue = "SessionId=aXYsUWxmbDhWLW90alJDTGtHSUh2Uno5Z3xPSkhTYjZsOTFsVnA|signature.be2ee0eb3d894ef671a8475d78c635d28e844011eda7ae16c47830333466d1e0"
 
 getHeaderValue :: HeaderName -> [Header] -> String
 getHeaderValue header =
