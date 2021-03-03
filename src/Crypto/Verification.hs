@@ -17,10 +17,10 @@ import Crypto.Hash (Digest, digestFromByteString)
 import Data.ByteArray.Encoding (Base(..)
                               , convertToBase
                               , convertFromBase)
-import Protolude (rightToMaybe)
 import Data.Tuple (swap)
 
 import Crypto.Encryption (Encrypted(..), getIV, getSecret)
+import Extension.Either
 import qualified Extension.ByteString as EBS
 
 data Signed signable =

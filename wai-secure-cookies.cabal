@@ -19,9 +19,9 @@ library
   other-modules:       Cookie.Secure
                      , Crypto.Encryption
                      , Crypto.Verification
+                     , Extension.Either
                      , Extension.ByteString
   build-depends:       base >= 4.7 && < 5
-                     , protolude >= 0.2 && < 0.3
                      , wai >= 3.2 && < 4
                      , cryptonite >= 0.24 && < 0.28
                      , bytestring >= 0.10 && < 0.11
