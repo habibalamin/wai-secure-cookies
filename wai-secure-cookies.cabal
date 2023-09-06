@@ -3,6 +3,7 @@ cabal-version:       3.0
 name:                wai-secure-cookies
 version:             0.1.0.7
 synopsis:            WAI middleware to automatically encrypt and sign cookies
+description:         wai-secure-cookies is a WAI middleware to automatically encrypt and sign cookies w/ specified keys, and a command line tool to generate those keys
 homepage:            https://github.com/habibalamin/wai-secure-cookies
 license:             MIT
 license-file:        LICENSE
