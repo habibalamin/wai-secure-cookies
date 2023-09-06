@@ -57,3 +57,7 @@ executable waicookie-genkey
                      , cryptonite
                      , bytestring
                      , memory
+
+source-repository head
+  type:              git
+  location:          https://github.com/habibalamin/wai-secure-cookies
