@@ -1,0 +1,7 @@
+packages: wai-secure-cookies.cabal
+with-compiler: ghc-9.6.2
+test-show-details: direct
+
+package wai-secure-cookies
+  ghc-options:
+    -Wall

@@ -1,15 +1,16 @@
+cabal-version:       3.4
+
 name:                wai-secure-cookies
-version:             0.1.0.6
+version:             0.1.0.7
 description:         WAI middleware to automatically encrypt and sign cookies
 homepage:            https://github.com/habibalamin/wai-secure-cookies
 license:             MIT
 license-file:        LICENSE
 author:              Habib Alamin
 maintainer:          ha.alamin@gmail.com
-copyright:           © حبيب الامين ‪2017
+copyright:           © حبيب الأمين ‪2023
 category:            Web
 build-type:          Simple
-cabal-version:       >=1.10
 extra-source-files:  README.md
 
 library
@@ -23,12 +24,12 @@ library
                      , Extension.ByteString
   build-depends:       base >= 4.7 && < 5
                      , wai >= 3.2 && < 4
-                     , cryptonite >= 0.24 && < 0.28
-                     , bytestring >= 0.10 && < 0.11
-                     , memory >= 0.14 && < 0.16
-                     , random >= 1.1 && < 2
-                     , split >= 0.2 && < 0.3
-                     , http-types >= 0.12.1 && < 0.13
+                     , cryptonite >= 0.24
+                     , bytestring >= 0.10
+                     , memory >= 0.14
+                     , random >= 1.1
+                     , split >= 0.2
+                     , http-types >= 0.12.1
 
 test-suite wai-secure-cookies-test
   hs-source-dirs:      spec
@@ -36,11 +37,12 @@ test-suite wai-secure-cookies-test
   other-modules:       MiddlewareSpec
   type:                exitcode-stdio-1.0
   main-is:             Main.hs
-  build-depends:       base >= 4.7 && < 5
-                     , bytestring >= 0.10 && < 0.11
-                     , wai >= 3.2 && < 4
-                     , wai-extra >= 3.0 && < 4
-                     , http-types >= 0.12.1 && < 0.13
+  build-tool-depends:  hspec-discover:hspec-discover
+  build-depends:       base >= 4.7
+                     , bytestring >= 0.10
+                     , wai >= 3.2
+                     , wai-extra >= 3.0
+                     , http-types >= 0.12.1
                      , wai-secure-cookies
                      , hspec
                      , hspec-expectations
@@ -51,7 +53,7 @@ executable waicookie-genkey
   hs-source-dirs:      keygensrc
   default-language:    Haskell2010
   main-is:             Main.hs
-  build-depends:       base >= 4.7 && < 5
-                     , cryptonite >= 0.24 && < 0.28
-                     , bytestring >= 0.10 && < 0.11
-                     , memory >= 0.14 && < 0.16
+  build-depends:       base >= 4.7
+                     , cryptonite >= 0.24
+                     , bytestring >= 0.10
+                     , memory >= 0.14
