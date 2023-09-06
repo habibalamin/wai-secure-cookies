@@ -24,12 +24,12 @@ library
                      , Extension.ByteString
   build-depends:       base >= 4.7 && < 5
                      , wai >= 3.2 && < 4
-                     , cryptonite >= 0.24
-                     , bytestring >= 0.10
-                     , memory >= 0.14
-                     , random >= 1.1
-                     , split >= 0.2
-                     , http-types >= 0.12.1
+                     , cryptonite >= 0.24 && < 0.31
+                     , bytestring >= 0.10 && < 0.12
+                     , memory >= 0.14 && < 0.19
+                     , random >= 1.1 && < 1.3
+                     , split >= 0.2 && < 0.3
+                     , http-types >= 0.12.1 && < 0.13
 
 test-suite wai-secure-cookies-test
   hs-source-dirs:      spec
@@ -38,22 +38,22 @@ test-suite wai-secure-cookies-test
   type:                exitcode-stdio-1.0
   main-is:             Main.hs
   build-tool-depends:  hspec-discover:hspec-discover
-  build-depends:       base >= 4.7
-                     , bytestring >= 0.10
-                     , wai >= 3.2
-                     , wai-extra >= 3.0
-                     , http-types >= 0.12.1
+  build-depends:       base
+                     , bytestring
+                     , wai
+                     , wai-extra >= 3 && < 4
+                     , http-types
                      , wai-secure-cookies
-                     , hspec
-                     , hspec-expectations
-                     , hspec-wai
+                     , hspec >= 2.6 && < 2.12
+                     , hspec-expectations >= 0.8.2 && < 0.9
+                     , hspec-wai >= 0.9.1 && < 0.12
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
 
 executable waicookie-genkey
   hs-source-dirs:      keygensrc
   default-language:    Haskell2010
   main-is:             Main.hs
-  build-depends:       base >= 4.7
-                     , cryptonite >= 0.24
-                     , bytestring >= 0.10
-                     , memory >= 0.14
+  build-depends:       base
+                     , cryptonite
+                     , bytestring
+                     , memory
