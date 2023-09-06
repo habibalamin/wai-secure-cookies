@@ -47,7 +47,7 @@ test-suite wai-secure-cookies-test
                      , hspec
                      , hspec-expectations
                      , hspec-wai
-  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
 
 executable waicookie-genkey
   hs-source-dirs:      keygensrc
