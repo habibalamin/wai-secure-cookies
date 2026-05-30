@@ -1,0 +1,26 @@
+image: archlinux
+sources:
+  - https://git.sr.ht/~habibalamin/wai-secure-cookies
+tasks:
+  - setup: |
+      curl -Lo ghcup https://github.com/haskell/ghcup-hs/releases/download/v0.2.5.0/x86_64-linux-ghcup-0.2.5.0
+      if [ "$(sha256sum ghcup | cut -f1 -d' ')" = '480e05e414d2efa5abbda0006984a3343cd4973ead7b5c48d65a55a47b40ce59' ]; then
+        chmod +x ghcup
+        sudo mv ghcup /usr/local/bin/
+      else
+        printf '%s\n' "GHCup binary failed checksum!"
+      fi
+
+      export PATH="$HOME/.ghcup/bin:$PATH"
+      ghcup install cabal 3.16
+      cabal update
+  - test: |
+      cd wai-secure-cookies
+
+      export PATH="$HOME/.ghcup/bin:$PATH"
+
+      for version in 9.10.1 9.10.2 9.10.3    9.8.1 9.8.2 9.8.4; do
+        ghcup install ghc "$version"
+        cabal test --with-compiler=ghc-"$version"
+        ghcup rm ghc "$version"
+      done
